@@ -24,18 +24,27 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const {data} = await axios({
+        const { data } = await axios({
           url: 'http://localhost:3000/employees',
           method: 'GET',
-        })
+        });
         this.employees = data;
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       console.log('fetchData called');
     },
-    
-    delEmployee() {
+
+    async delEmployee(e) {
+      try {
+        await axios({
+          url: `http://localhost:3000/employees/${e.id}`,
+          method: 'DELETE',
+        });
+        this.fetchData();
+      } catch (error) {
+        console.error(error);
+      }
       console.log('delEmployee called');
     },
   },
