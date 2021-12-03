@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ButtonGet from '@/components/ButtonGet.vue';
 import CardView from '@/components/CardView.vue';
 
@@ -21,9 +22,19 @@ export default {
     };
   },
   methods: {
-    fetchData() {
+    async fetchData() {
+      try {
+        const {data} = await axios({
+          url: 'http://localhost:3000/employees',
+          method: 'GET',
+        })
+        this.employees = data;
+      } catch (error) {
+        console.error(error)
+      }
       console.log('fetchData called');
     },
+    
     delEmployee() {
       console.log('delEmployee called');
     },
