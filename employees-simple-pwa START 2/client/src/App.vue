@@ -22,6 +22,10 @@ export default {
       employees: [],
     };
   },
+
+  created() {
+    document.addEventListener('swUpdated', this.updateAvailable, { once: true });
+  },
   methods: {
     async fetchData() {
       try {
