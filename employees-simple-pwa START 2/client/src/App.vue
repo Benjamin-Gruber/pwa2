@@ -30,7 +30,7 @@ export default {
     async fetchData() {
       try {
         const { data } = await axios({
-          url: 'http://localhost:3000/employees',
+          url: '/employees',
           method: 'GET',
         });
         this.employees = data;
@@ -43,7 +43,7 @@ export default {
     async delEmployee(e) {
       try {
         await axios({
-          url: `http://localhost:3000/employees/${e.id}`,
+          url: `/employees/${e.id}`,
           method: 'DELETE',
         });
         this.fetchData();
